@@ -1,0 +1,16 @@
+version: '3'
+services:
+  data-science:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./output:/app/output
+    environment:
+      - NAME=World
+      - OPENAI_API_KEY
+      - ANTHROPIC_API_KEY
