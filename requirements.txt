@@ -1,5 +1,6 @@
-crewai
-crewai_tools
-langchain_community==0.0.29
+crewai[tools]
+langchain_community
 IPython
 langchain_anthropic
+pylint
+black

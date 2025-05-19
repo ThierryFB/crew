@@ -1,0 +1,19 @@
+Is this the end of traditional BI tools as we know them? 🤔 
+
+Last week, a CFO told me something that sounded ridiculous at first: 
+
+"I'm done with Power BI. I want to ask questions to an AI in plain language and have it learn what metrics matter to my business." 
+
+My immediate reaction? "It'd be much easier (and cheaper) to just set a filter in your Power BI pre-built dashboard! Why complicate things with AI?"
+
+But to humor her, I started researching options... and that's when I discovered Wren AI. 
+
+It completely blew my mind. 🤯 
+
+What makes it truly game-changing? It's open source - meaning companies concerned about data privacy can deploy it directly on their own data warehouse in minutes.
+
+I've just set this up myself to show you how it works 👇
+
+Have you tried AI-powered data tools yet? Could this replace your current BI setup? 
+
+Need help implementing tech solutions for your business? Reach out to me or my colleagues Maxime Lavoie and Justin Rotondo at LevelOps (formerly Obius).

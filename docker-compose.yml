@@ -1,16 +1,39 @@
 version: '3'
 services:
-  data-science:
+  crew-ai:
+    network_mode: host
     build:
       context: .
       dockerfile: dev.Dockerfile
-    ports:
-      - "5000:5000"
     volumes:
       - ./src:/app/src
       - ./tests:/app/tests
       - ./output:/app/output
+      - ./files:/app/files
+      - ./knowledge:/app/knowledge
     environment:
-      - NAME=World
+      - APP=job
       - OPENAI_API_KEY
       - ANTHROPIC_API_KEY
+      - ANTHROPIC_MODEL=claude-3-7-sonnet-20250219
+      - SERPER_API_KEY
+  lint:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./output:/app/output
+      - ./files:/app/files
+      - ./knowledge:/app/knowledge
+      - ./.pylintrc:/app/.pylintrc
+    command: pylint /app/src
+  black:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./src:/app/src
+      - ./.pylintrc:/app/.pylintrc
+    command: black /app/src

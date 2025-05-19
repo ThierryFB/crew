@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
 
-ENV PYTHONPATH /app
+ENV PYTHONPATH=/app
 
 # Run app.py when the container launches
 CMD ["python", "src/app.py"]

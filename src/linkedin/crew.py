@@ -1,37 +1,43 @@
 # Warning control
 import warnings
-warnings.filterwarnings('ignore')
 from crewai import Crew
-import os
-from utils import get_openai_api_key, save_markdown_to_file
-from linkedin.agents import content_strategist, industry_analyst, audience_persona_expert, content_writer, engagement_optimizer, content_editor
-from linkedin.tasks import strategy_task, research_task, audience_analysis_task, content_creation_task, optimization_task, final_review_task
+from src.linkedin.config.agents import (
+    content_writer,
+    engagement_optimizer,
+    content_editor,
+    domain_expert,
+)
+from src.linkedin.config.tasks import (
+    content_creation_task,
+    tech_review_task,
+    optimization_task,
+    final_review_task,
+)
+from src.linkedin.config.knowledge import get_knowledge_sources
 
-openai_api_key = get_openai_api_key()
-os.environ["OPENAI_MODEL_NAME"] = 'gpt-3.5-turbo'
+warnings.filterwarnings("ignore")
 
-topic = "Web3 Social Network"
+knowledge_sources = get_knowledge_sources()
 
 crew = Crew(
-  agents=[
-    content_strategist,
-    industry_analyst,
-    content_writer,
-    audience_persona_expert,
-    engagement_optimizer,
-    content_editor
-  ],
-  tasks=[
-    strategy_task,
-    research_task,
-    audience_analysis_task,
-    content_creation_task,
-    optimization_task,
-    final_review_task
-  ],  # Tasks would be defined separately
-  verbose=2
+    agents=[
+        content_writer,
+        domain_expert,
+        engagement_optimizer,
+        content_editor,
+    ],
+    tasks=[
+        content_creation_task,
+        tech_review_task,
+        optimization_task,
+        final_review_task,
+    ],
+    verbose=True,
+    knowledge_sources=knowledge_sources,
 )
 
-def kickoff(inputs):
-  return crew.kickoff(inputs)
 
+def kickoff(inputs):
+    output = crew.kickoff(inputs)
+    print(output.raw)
+    return output.raw
